@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <style>
+    li:before { content: '\1F4FA'; margin-left: -20px; margin-right: 10px; } 
+  </style>
+  <meta charset="utf-8">
+  <title>World of Movies</title>
+</head>
+
+  <body style="background-color:powderblue;font-family:verdana;">
+    <h1>{{temp_title_rec}}</h1>
+      <h2> Watch these on your next movie marathon!!! &#127871 &#127871 &#127871 </h2>
+      
+        <ul>
+          {% for movie in movies %}
+          <li >{{movie}}</li>
+          {% endfor %}
+        </ul>
+     
+    
+      For more Movie information, go to <a href="https://www.imdb.com">IMDB</a>
+      and to <a href="https://www.rottentomatoes.com">Rotten Tomatoes</a> <br>
+      <br>
+
+      <a href="https://movielens.org/home">Movielens</a> is real! <br>
+      <br>
+
+      <a href='/'>Back to the main page</a>
+  </body>
+
+
+</html>

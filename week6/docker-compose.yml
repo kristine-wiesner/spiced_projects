@@ -1,0 +1,45 @@
+version: '3'
+services:
+  tweet_collector:
+    build: tweet_collector/
+    volumes:
+    - ./tweet_collector/:/app
+  tweet_mongo:
+    build: tweet_mongo/
+    volumes:
+    - ./tweet_mongo/:/app
+    links:
+    - mongodb
+  tweet_climatechange:
+    build: tweet_climatechange/
+    volumes:
+    - ./tweet_climatechange/:/app
+    links:
+    - mongodb
+  etl:
+    build: etl_job/
+    volumes:
+    - ./etl_job/:/app
+    links:
+    - mongodb
+    - postgresdb
+  
+  mongodb:
+    image: mongo
+    ports:
+    - 27017:27017
+  
+  postgresdb:
+    image: postgres
+    ports:
+    - "5555:5432"
+    environment:
+    - POSTGRES_USER=kristine
+    - POSTGRES_PASSWORD=xxxxxxx
+    - POSTGRES_DB=climatechangetweets
+  metabase:
+    image: metabase/metabase
+    ports:
+    - 3000:3000
+    links:
+    - postgresdb
